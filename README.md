@@ -9,6 +9,12 @@ The two most notable differences between Version 3 and Version 4 of the MCC Heal
 
 -----------
 
+Update 1.01: 2022-10-24
+
+Updates to mccHealer.php and healer.css.
+
+
+
 Initial Commit: 2022-10-23
 
 The initial commit of the Mutant Crawl Classics (MCC) Healer Character Generator Version 4.
