@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta name="description" content="Mutant Crawl Classics Healer Character Generator. Goblinoid Games.">
 	<meta name="keywords" content="Mutant Crawl Classics, Goblinoid Games,HTML5,CSS,JavaScript">
-	<meta name="author" content="Mark Tasaka 2021">
+	<meta name="author" content="Mark Tasaka 2022">
     
-    <link rel="icon" href="../../../images/favicon/favicon.png" type="image/png" sizes="16x16"> 
+    <link rel="icon" href="../../../images/favicon/icon.png" type="image/png" sizes="16x16"> 
 		
 
 	<link rel="stylesheet" type="text/css" href="css/healer.css">
@@ -242,6 +242,7 @@
         $intelligenceMod = getAbilityModifier($intelligence);
         $luckMod = getAbilityModifier($luck);
     
+        $nameGenMessage = getNameDescript($givenName, $surname);
         $generationMessage = generationMesssage ($abilityScoreGen);
     
         if(isset($_POST["theArmour"]))
@@ -710,7 +711,7 @@
 
        <span id="abilityScoreGeneration">
             <?php
-           echo $generationMessage . '<br/>' . $optimizeAbilityScoreMessage;
+           echo $generationMessage . '<br/>' . $optimizeAbilityScoreMessage . '<br/>' . $nameGenMessage;
            ?>
        </span>
 
