@@ -9,6 +9,17 @@ The two most notable differences between Version 3 and Version 4 of the MCC Heal
 
 -----------
 
+A live version of the MCC Healer Character Generator Version 4 is available at:
+
+https://www.oldschooladventures.org/mcc2/classes/healer/
+
+-------------
+
+Update 1.02: 2022-10-25
+
+The completed version of the Healer Character Generator added.  A link to the live version of the generator has been added to the ReadMe file.
+
+
 Update 1.01: 2022-10-24
 
 Updates to mccHealer.php and healer.css.
