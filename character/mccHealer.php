@@ -198,40 +198,91 @@
 
         
         $abilityScoreArray = array();
-        
 
-        for($i = 0; $i < 6; ++$i)
-        {
-            $abilityScore = rollAbilityScores ($abilityScoreGen);
+        if(isset($_POST['theCustomAbilityScore']) && $_POST['theCustomAbilityScore'] == 1) 
+        {        
+            
+            if(isset($_POST["theStrength"]))
+            {
+                $strengthString = $_POST["theStrength"];
+                $strengthBase = intval($strengthString);
+            }      
 
-            array_push($abilityScoreArray, $abilityScore);
+            if(isset($_POST["theAgility"]))
+            {
+                $agilityString = $_POST["theAgility"];
+                $agility = intval($agilityString);
+            }     
 
-        }
+            if(isset($_POST["theStamina"]))
+            {
+                $staminaString = $_POST["theStamina"];
+                $stamina = intval($staminaString);
+            }    
 
-        if(isset($_POST['theOptimizeAbilityScore']) && $_POST['theOptimizeAbilityScore'] == 1) 
-        {
-            rsort($abilityScoreArray);
+            if(isset($_POST["thePersonality"]))
+            {
+                $personalityString = $_POST["thePersonality"];
+                $personality = intval($personalityString);
+            }  
 
-            $strengthBase = $abilityScoreArray[3];
-            $agility = $abilityScoreArray[5];
-            $stamina = $abilityScoreArray[4];
-            $personality = $abilityScoreArray[0];
-            $intelligence = $abilityScoreArray[1];
-            $luck = $abilityScoreArray[2];
+            if(isset($_POST["theIntelligence"]))
+            {
+                $intelligenceString = $_POST["theIntelligence"];
+                $intelligence = intval($intelligenceString);
+            }  
 
-            $optimizeAbilityScoreMessage = "Ability Scores optimized in the order of Per, Int, Luck, Str, Sta, Agi.";
+
+            if(isset($_POST["theLuck"]))
+            {
+                $luckString = $_POST["theLuck"];
+                $luck = intval($luckString);
+            }  
+
+            $generationMessage = "Custom Ability Scores";
+            $optimizeAbilityScoreMessage = "";
+
         }
         else
         {
-            $strengthBase = $abilityScoreArray[0];
-            $agility = $abilityScoreArray[1];
-            $stamina = $abilityScoreArray[2];
-            $personality = $abilityScoreArray[3];
-            $intelligence = $abilityScoreArray[4];
-            $luck = $abilityScoreArray[5];
             
-            $optimizeAbilityScoreMessage = "";
+            for($i = 0; $i < 6; ++$i)
+            {
+                $abilityScore = rollAbilityScores ($abilityScoreGen);
+
+                array_push($abilityScoreArray, $abilityScore);
+
+            }
+            
+             $generationMessage = generationMesssage ($abilityScoreGen);
+
+            if(isset($_POST['theOptimizeAbilityScore']) && $_POST['theOptimizeAbilityScore'] == 1) 
+            {
+                rsort($abilityScoreArray);
+
+                $strengthBase = $abilityScoreArray[3];
+                $agility = $abilityScoreArray[5];
+                $stamina = $abilityScoreArray[4];
+                $personality = $abilityScoreArray[0];
+                $intelligence = $abilityScoreArray[1];
+                $luck = $abilityScoreArray[2];
+
+                $optimizeAbilityScoreMessage = "<br/>Ability Scores optimized in the order of Per, Int, Luck, Str, Sta, Agi.";
+            }
+            else
+            {
+                $strengthBase = $abilityScoreArray[0];
+                $agility = $abilityScoreArray[1];
+                $stamina = $abilityScoreArray[2];
+                $personality = $abilityScoreArray[3];
+                $intelligence = $abilityScoreArray[4];
+                $luck = $abilityScoreArray[5];
+                
+                $optimizeAbilityScoreMessage = "";
+            } 
+
         } 
+        
 
         $strength = $strengthBonusFromArtifact + $strengthBase;
 
@@ -243,7 +294,6 @@
         $luckMod = getAbilityModifier($luck);
     
         $nameGenMessage = getNameDescript($givenName, $surname);
-        $generationMessage = generationMesssage ($abilityScoreGen);
     
         if(isset($_POST["theArmour"]))
         {
@@ -711,7 +761,7 @@
 
        <span id="abilityScoreGeneration">
             <?php
-           echo $generationMessage . '<br/>' . $optimizeAbilityScoreMessage . '<br/>' . $nameGenMessage;
+           echo $generationMessage . $optimizeAbilityScoreMessage . '<br/>' . $nameGenMessage;
            ?>
        </span>
 
